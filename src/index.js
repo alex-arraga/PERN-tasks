@@ -1,1 +1,3 @@
-console.log("hola mundo")
+import app from "./app.js";
+
+app.listen(3000)
