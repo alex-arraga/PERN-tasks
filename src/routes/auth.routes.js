@@ -1,15 +1,21 @@
 // Aqui se definiran las rutas relacionadas a la autenticación, como login o register
 
 import { Router } from "express";
+import {
+    signIn,
+    signUp,
+    logOut,
+    profile
+} from "../controllers/auth.controller.js"
 
 const router = Router()
 
-router.post('/signin', (req, res) => res.send('Ingresando'))
+router.post('/signin', signIn)
 
-router.post('/signup', (req, res) => res.send('Registrando usuario'))
+router.post('/signup', signUp)
 
-router.post('/signout', (req, res) => res.send('Cerrando sesion'))
+router.post('/logout', logOut)
 
-router.get('/profile', (req, res) => res.send("Perfil del usuario"))
+router.get('/profile', profile)
 
 export default router

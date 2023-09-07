@@ -11,8 +11,9 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(urlencoded({ extended: false }))
 
+
 // Routes
-app.get('/', (req, res) => res.json({ message: "welcome to my API" }))
+app.get('/', (req, res) => res.json({ message: 'Welcome to my APi' }))
 app.use('/api', tasksRoutes)
 app.use('/api', authRoutes)
 
