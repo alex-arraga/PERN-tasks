@@ -1,22 +1,22 @@
 import express from "express";
 import { urlencoded } from "express";
 import morgan from "morgan";
+import tasksRoutes from "./routes/task.routes.js";
+import authRoutes from "./routes/auth.routes.js"
 
 const app = express();
 
-// App usara morgan para ver por consola las peticiones que hacemos
+// Middlewares
 app.use(morgan('dev'))
-
-// Cualquier dato json que llegue conviertelo a un objeto de js
 app.use(express.json())
-
-// Analizar datos desde formularios HTML en request entrantes y los hace accesible en el objeto req.body
 app.use(urlencoded({ extended: false }))
 
+// Routes
 app.get('/', (req, res) => res.json({ message: "welcome to my API" }))
+app.use('/api', tasksRoutes)
+app.use('/api', authRoutes)
 
-// Para manejar errores vamos a usar un middleware que va al final, esto funcionara como manejador de errores si una ruta va mal o no se encuentra
-
+// Error handler
 app.use((err, req, res, next) => {
     res.status(500).json({
         status: "error",
@@ -24,5 +24,4 @@ app.use((err, req, res, next) => {
     })
 })
 
-// Exporto app a index.js
 export default app
