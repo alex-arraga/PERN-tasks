@@ -11,6 +11,7 @@ export const getAllTasks = async (req, res) => {
 export const getTask = async (req, res) => {
     const id = req.params.id
     const result = await pool.query('SELECT * FROM tasks WHERE id=$1', [id]);
+
     if (result.rowCount === 0) {
         res.status(404).json('La tarea no existe')
     } return res.json(result.rows[0])
@@ -35,7 +36,7 @@ export const updateTask = async (req, res) => {
         [title, description, id]);
 
     if (result.rowCount === 0) {
-        res.status(404).json('No se puede actualizar, ya que no se encuentra el id de la tarea')
+        res.status(404).json('Tarea inexistente')
     } res.json(result.rows[0])
 };
 
