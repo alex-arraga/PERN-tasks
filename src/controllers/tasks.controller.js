@@ -1,5 +1,50 @@
-export const getAllTasks = (req, res) => { res.send('Obteniendo tareas') };
-export const getTask = (req, res) => { res.send('Obteniendo tarea unica') };
-export const createNewTask = (req, res) => { res.send('Creando tarea') };
-export const updateTask = (req, res) => { res.send('Actualizando tarea') };
-export const deleteTask = (req, res) => { res.send('Eliminando tarea') };
+// Do a CRUD using db
+import { pool } from "../db.js";
+
+// GET - All Tasks
+export const getAllTasks = async (req, res) => {
+    const result = await pool.query('SELECT * FROM tasks');
+    return res.json(result.rows)
+};
+
+// GET - Unique Task
+export const getTask = async (req, res) => {
+    const id = req.params.id
+    const result = await pool.query('SELECT * FROM tasks WHERE id=$1', [id]);
+    if (result.rowCount === 0) {
+        res.status(404).json('La tarea no existe')
+    } return res.json(result.rows[0])
+};
+
+// POST - Create New Task
+export const createNewTask = async (req, res) => {
+    const { title, description } = req.body;
+    // DB Insert
+    const result = await pool.query('INSERT INTO tasks (title, description) VALUES ($1, $2) RETURNING *',
+        [title, description]
+    );
+    res.json(result.rows[0])
+};
+
+// PUT - Update Task
+export const updateTask = async (req, res) => {
+    const id = req.params.id;
+    const { title, description } = req.body;
+
+    const result = await pool.query('UPDATE tasks SET title = $1, description = $2 WHERE id = $3 RETURNING *',
+        [title, description, id]);
+
+    if (result.rowCount === 0) {
+        res.status(404).json('No se puede actualizar, ya que no se encuentra el id de la tarea')
+    } res.json(result.rows[0])
+};
+
+// DELETE - Delete Task
+export const deleteTask = async (req, res) => {
+    const id = req.params.id;
+    const result = await pool.query('DELETE FROM tasks WHERE id=$1', [id]);
+    if (result.rowCount === 0) {
+        res.status(404).json('No se pudo eliminar la tarea, ya que no existe')
+    }
+    res.json('Tarea eliminada con exito')
+};

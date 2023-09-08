@@ -1,6 +1,5 @@
-// Aqui se definiran las rutas relacionadas a la autenticación, como login o register
+import Router from 'express-promise-router';
 
-import { Router } from "express";
 import {
     signIn,
     signUp,

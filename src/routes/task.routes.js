@@ -1,6 +1,5 @@
-// Aqui se definiran las rutas de todas las tareas
+import Router from 'express-promise-router';
 
-import { Router } from "express";
 import {
     getAllTasks,
     createNewTask,
