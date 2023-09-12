@@ -3,15 +3,14 @@ import { pool } from "../db.js";
 
 // GET - All Tasks
 export const getAllTasks = async (req, res) => {
-    console.log(req.userId)
-    const result = await pool.query('SELECT * FROM tasks');
+    const result = await pool.query('SELECT * FROM tasks WHERE user_id = $1', [req.userId]);
     return res.json(result.rows)
 };
 
 // GET - Unique Task
 export const getTask = async (req, res) => {
     const id = req.params.id
-    const result = await pool.query('SELECT * FROM tasks WHERE id=$1', [id]);
+    const result = await pool.query('SELECT * FROM tasks WHERE id = $1 AND user_id = $2', [id, req.userId]);
 
     if (result.rowCount === 0) {
         res.status(404).json('La tarea no existe')
@@ -22,8 +21,8 @@ export const getTask = async (req, res) => {
 export const createNewTask = async (req, res) => {
     const { title, description } = req.body;
     // DB Insert
-    const result = await pool.query('INSERT INTO tasks (title, description) VALUES ($1, $2) RETURNING *',
-        [title, description]
+    const result = await pool.query('INSERT INTO tasks (title, description, user_id) VALUES ($1, $2, $3) RETURNING *',
+        [title, description, req.userId]
     );
     res.json(result.rows[0])
 };
