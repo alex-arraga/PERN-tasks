@@ -5,14 +5,14 @@ export const isAuth = (req, res, next) => {
 
     if (!token) {
         return res.status(401).json({
-            message: 'No estas autorizo, ingresá con tu cuenta o registrate'
+            message: 'No estas autorizado, cookie inexistente'
         })
     }
 
     jwt.verify(token, 'fjp4oi2SDsa', (err, decoded) => {
         if (err) {
             return res.status(401).json({
-                message: 'No estas autorizo, ingresá con tu cuenta o registrate'
+                message: 'No estas autorizado, ingresá con tu cuenta o registrate'
             })
         }
 

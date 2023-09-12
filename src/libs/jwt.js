@@ -2,9 +2,7 @@ import jwt from 'jsonwebtoken';
 
 export const createAccessToken = (payload) => {
   return new Promise((resolve, reject) => {
-    jwt.sign(
-      payload,
-      'fjp4oi2SDsa',
+    jwt.sign(payload, 'fjp4oi2SDsa',
       {
         expiresIn: '1d'
       },
