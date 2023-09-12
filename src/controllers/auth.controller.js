@@ -6,12 +6,11 @@ import md5 from 'md5';
 // Sign up
 export const signUp = async (req, res, next) => {
     const { name, email, password } = req.body;
-    const gravatar = `https://www.gravatar.com/avatar/${md5(email)}`
+    const gravatar = `https://www.gravatar.com/avatar/${md5(email)}`;
 
     try {
         // Password encrypted
         const hashPassword = await bcrypt.hash(password, 10);
-
         const result = await pool.query('INSERT INTO users(name, email, password, gravatar) VALUES ($1, $2, $3, $4) RETURNING *', [name, email, hashPassword, gravatar]);
 
         // Create user Token 
@@ -39,7 +38,6 @@ export const signUp = async (req, res, next) => {
 // Sign in
 export const signIn = async (req, res) => {
     const { email, password } = req.body;
-
     const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
 
     if (result.rowCount === 0) {
