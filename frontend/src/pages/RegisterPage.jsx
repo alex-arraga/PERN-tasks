@@ -6,15 +6,25 @@ function RegisterPage() {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
-    const onSumbit = handleSubmit(data => {
+    const onSumbit = handleSubmit(async (data) => {
         console.log(data)
-    })
+        const response = await fetch('http://localhost:3000/api/signup', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const dataSignup = await response.json()
+        console.log(dataSignup)
+    });
 
     return (
         <div className="h-[calc(100vh-50px)] flex items-center justify-center">
             <Card>
                 <h3 className="text-2xl font-bold mb-5">Registro</h3>
 
+                {/* Send Form */}
                 <form onSubmit={onSumbit}>
                     <Input type='text' placeholder='Nombre'
                         {...register('name', { required: true })} />
