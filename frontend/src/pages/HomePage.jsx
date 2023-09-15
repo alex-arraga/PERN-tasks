@@ -1,8 +1,11 @@
-import React from "react";
+import { useAuth } from "../assets/context/authContext"
 
 function HomePage() {
+    const data = useAuth()
+    console.log(data)
+
     return (
-        <div className="text-purple-300 text-2xl font-bold">Home Page</div>
+        <div className='text-3xl font-medium'>Home Page</div>
     )
 }
 
