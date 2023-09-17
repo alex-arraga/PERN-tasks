@@ -70,7 +70,7 @@ export const signIn = async (req, res) => {
 };
 
 // Log out
-export const logOut = (req, res) => {
+export const signOut = (req, res) => {
     res.clearCookie('token');
     res.sendStatus(200);
 };

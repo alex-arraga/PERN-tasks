@@ -3,8 +3,8 @@ import Router from 'express-promise-router';
 import {
     signIn,
     signUp,
-    logOut,
-    profile
+    signOut,
+    profile,
 } from "../controllers/auth.controller.js"
 import { isAuth } from '../middlewares/auth.middleware.js';
 
@@ -14,7 +14,7 @@ router.post('/signin', signIn)
 
 router.post('/signup', signUp)
 
-router.post('/logout', logOut)
+router.post('/signout', signOut)
 
 router.get('/profile', isAuth, profile)
 

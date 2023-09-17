@@ -1,4 +1,4 @@
-import { useAuth } from "../assets/context/authContext"
+import { useAuth } from "../context/AuthContext"
 
 function HomePage() {
     const data = useAuth()

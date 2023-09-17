@@ -1,23 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Input, Label } from "../components/ui/index.js";
 import { useForm } from "react-hook-form"
-
+import { useAuth } from "../context/AuthContext.jsx";
 
 function RegisterPage() {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const { signUp } = useAuth()
+    const navigate = useNavigate()
 
     const onSumbit = handleSubmit(async (data) => {
-        console.log(data)
-        const response = await fetch('http://localhost:3000/api/signup', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        const dataSignUp = await response.json()
-        console.log(dataSignUp)
+        await signUp(data)
+        navigate('/signin')
     });
 
     return (

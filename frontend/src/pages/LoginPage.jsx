@@ -1,22 +1,17 @@
 import { Button, Card, Input, Label } from '../components/ui';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useAuth } from "../context/AuthContext.jsx";
 
 function LoginPage() {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { signIn } = useAuth();
+    const navigate = useNavigate();
 
     const onSumbit = handleSubmit(async (data) => {
-        console.log(data)
-        const response = await fetch('http://localhost:3000/api/signin', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        const dataSignIn = await response.json()
-        console.log(dataSignIn)
+        await signIn(data)
+        navigate('/profile')
     })
 
     return (

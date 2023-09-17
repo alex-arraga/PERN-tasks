@@ -12,7 +12,7 @@ function App() {
   return (
     <Routes>
       <Route path='/signup' element={<RegisterPage />} />
-      <Route path='/login' element={<LoginPage />} />
+      <Route path='/signin' element={<LoginPage />} />
       <Route path='/' element={<HomePage />} />
       <Route path='/tasks' element={<TasksPage />} />
       <Route path='/tasks/edit' element={<TasksFormPage />} />
