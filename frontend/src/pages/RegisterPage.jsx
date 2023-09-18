@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Card, Input, Label } from "../components/ui/index.js";
-import { useForm } from "react-hook-form"
-import { useAuth } from "../context/AuthContext.jsx";
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, Card, Input, Label } from '../components/ui/index.js';
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../context/AuthContext';
 
 function RegisterPage() {
 
@@ -60,7 +60,7 @@ function RegisterPage() {
                     </Button>
 
                     <div className='mt-10 flex gap-1'>
-                        <p className='text-sm text-gray-300'>Ya estas registrado?</p> <Link className='text-sm font-medium text-gray-100' to='/login'>Ingresá</Link>
+                        <p className='text-sm text-gray-300'>Ya estas registrado?</p> <Link className='text-sm font-medium text-gray-100' to='/signin'>Ingresá</Link>
                     </div>
                 </form>
             </Card>
