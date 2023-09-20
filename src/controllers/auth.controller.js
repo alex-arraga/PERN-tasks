@@ -17,8 +17,8 @@ export const signUp = async (req, res, next) => {
         const token = await createAccessToken({ id: result.rows[0].id });
 
         res.cookie('token', token, {
-            httpOnly: true,
-            // secure: true,
+            // httpOnly: true,
+            secure: true,
             sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000 // 1 day
         })
@@ -28,7 +28,9 @@ export const signUp = async (req, res, next) => {
     } catch (error) {
         if (error.code === "23505") {
             console.log(error)
-            return res.status(400).send('El usuario ya existe')
+            return res.status(400).json({
+                message: 'El usuario ya existe'
+            })
         }
 
         next(error) // Handles the error if the name is not written
@@ -60,8 +62,8 @@ export const signIn = async (req, res) => {
 
     // Send token to frontend in a cookie
     res.cookie('token', token, {
-        httpOnly: true,
-        // secure: true,
+        // httpOnly: true,
+        secure: true,
         sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000 // 1 day
     });
