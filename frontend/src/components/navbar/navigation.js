@@ -14,10 +14,6 @@ export const privateRoutes = [
     {
         name: 'Perfil',
         path: '/profile'
-    },
-    {
-        name: 'Cerrar sesión',
-        path: '/signout'
     }
 ]
 
@@ -27,7 +23,7 @@ export const publicRoutes = [
         path: '/signup'
     },
     {
-        name: 'Ingresá',
+        name: 'Ingresar',
         path: '/signin'
     },
     {

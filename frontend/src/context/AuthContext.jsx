@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
         })
 
         // The server returns a json object even if the response is an error, and 'response' interprets and stores it
-        const dataSignUp = await response.json()
+        const dataSignUp = await response.json();
 
         if (response.ok) {
             setUser(dataSignUp)
@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
             })
 
             // The server returns a JSON object even if the response is an error, and 'response' interprets and saves it
-            const dataSignIn = await response.json()
+            const dataSignIn = await response.json();
 
             if (response.ok) {
                 setUser(dataSignIn)
@@ -89,6 +89,15 @@ export function AuthProvider({ children }) {
             console.log(error)
         }
     };
+
+    const signOut = async () => {
+        const response = await fetch('http://localhost:3000/api/signout', {
+            method: 'POST',
+            credentials: 'include'
+        })
+        setIsAuth(false);
+        setUser(null);
+    }
 
     // Refresh page
     useEffect(() => {
@@ -119,7 +128,8 @@ export function AuthProvider({ children }) {
         isAuth,
         frontendErrors,
         signUp,
-        signIn
+        signIn,
+        signOut
     }}>
         {children}
     </createAuthContext.Provider>
