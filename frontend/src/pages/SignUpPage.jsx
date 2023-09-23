@@ -17,7 +17,7 @@ function RegisterPage() {
     });
 
     return (
-        <div className="h-[calc(100vh-50px)] flex items-center justify-center">
+        <div className="h-[calc(100vh-7rem)] flex items-center justify-center">
             <Card>
                 <div className="flex justify-center">
                     <h3 className="text-4xl font-bold mb-5">Sign up</h3>

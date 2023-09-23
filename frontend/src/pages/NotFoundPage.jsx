@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function NotFoundPage() {
     return (
-        <div className="h-[calc(100vh-50px)] flex justify-center items-center">
+        <div className="h-[calc(100vh-10rem)] flex justify-center items-center">
             <Card>
                 <h1>Not Found</h1>
                 <h3>404</h3>

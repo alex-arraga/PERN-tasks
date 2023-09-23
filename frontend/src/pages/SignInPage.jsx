@@ -17,7 +17,7 @@ function LoginPage() {
     })
 
     return (
-        <div className='h-[calc(100vh-50px)] flex justify-center items-center'>
+        <div className='h-[calc(100vh-7rem)] flex justify-center items-center'>
             <Card>
 
                 <div className='flex justify-center'>
