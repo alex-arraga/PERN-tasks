@@ -3,8 +3,8 @@ import { useAuth } from '../../context/authContext';
 import { publicRoutes, privateRoutes } from './navigation';
 
 export function NavBar() {
-    const { isAuth, signOut } = useAuth();
-    const location = useLocation();
+    const { isAuth, signOut } = useAuth()
+    const location = useLocation()
 
     return (
         <nav className="bg-zinc-900 flex items-center justify-between py-4 px-10">
@@ -15,8 +15,6 @@ export function NavBar() {
             </Link>
 
             <ul className="flex gap-5 items-center text-zinc-300">
-
-                {/* Private and Public Routes */}
 
                 {isAuth ?
                     <>

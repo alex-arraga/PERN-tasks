@@ -1,4 +1,4 @@
-import { Button, Card, Input, Label } from '../components/ui';
+import { Button, Card, ErrorMessage, Input, Label } from '../components/ui';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/authContext';
@@ -31,7 +31,7 @@ function LoginPage() {
                     </Label>
                     <Input type='email' placeholder='email'
                         {...register('email', { required: true })} />
-                    {errors.email && <p className='text-red-400 text-sm mb-2'>Por favor ingrese su email</p>}
+                    {errors.email && <ErrorMessage>Por favor ingrese su email</ErrorMessage>}
 
                     {/* Password input */}
                     <Label htmlFor='password'>
@@ -39,7 +39,7 @@ function LoginPage() {
                     </Label>
                     <Input type='password' placeholder='password'
                         {...register('password', { required: true })} />
-                    {errors.password && <p className='text-red-400 text-sm mb-2'>Por favor ingrese su contraseña</p>}
+                    {errors.password && <ErrorMessage>Por favor ingrese su contraseña</ErrorMessage>}
 
 
                     {/* Button */}

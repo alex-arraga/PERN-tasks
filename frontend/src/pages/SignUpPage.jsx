@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Card, Input, Label } from '../components/ui/index.js';
+import { Button, Card, ErrorMessage, Input, Label } from '../components/ui/index.js';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/authContext';
 
@@ -30,28 +30,28 @@ function RegisterPage() {
                     </Label>
                     <Input type='text' placeholder='Nombre'
                         {...register('name', { required: true })} />
-                    {errors.name && <p className="text-red-300 text-xs">Por favor coloque su nombre</p>}
+                    {errors.name && <ErrorMessage>Por favor ingrese su nombre</ErrorMessage>}
 
                     <Label htmlFor='lastname'>
                         Apellido
                     </Label>
                     <Input type='text' placeholder='Apellido'
                         {...register('lastname', { required: true })} />
-                    {errors.lastname && <p className="text-red-300 text-xs">Por favor coloque su apellido</p>}
+                    {errors.lastname && <ErrorMessage>Por favor ingrese su apellido</ErrorMessage>}
 
                     <Label htmlFor='email'>
                         Email
                     </Label>
                     <Input type='email' placeholder='ejemplo@gmail.com'
                         {...register('email', { required: true })} />
-                    {errors.email && <p className="text-red-300 text-xs">Por favor coloque su email</p>}
+                    {errors.email && <ErrorMessage>Por favor ingrese su email</ErrorMessage>}
 
                     <Label htmlFor='password'>
                         Contraseña
                     </Label>
                     <Input type='password' placeholder='******'
                         {...register('password', { required: true })} />
-                    {errors.password && <p className="text-red-300 text-xs">Por favor coloque contraseña</p>}
+                    {errors.password && <ErrorMessage>Por favor ingrese contraseña</ErrorMessage>}
 
                     <Button>
                         Registrarse
