@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
+
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import HomePage from './pages/HomePage';
@@ -7,10 +8,13 @@ import TasksFormPage from './pages/TasksFormPage';
 import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
+
 import NavBar from './components/navbar/NavBar';
 import Container from './components/ui/Container';
 import { ProtectedRoutes } from './components/protected_routes/ProtectedRoutes';
+
 import { useAuth } from './context/authContext';
+import { TasksProvider } from './context/TasksContext';
 
 function App() {
 
@@ -30,9 +34,13 @@ function App() {
 
           <Route element={<ProtectedRoutes isAllowed={isAuth} redirectTo={'/signin'} />}>
             <Route path='/' element={<HomePage />} />
-            <Route path='/tasks' element={<TasksPage />} />
-            <Route path='/tasks/new' element={<TasksFormPage />} />
-            <Route path='/tasks/1/edit' element={<TasksFormPage />} />
+
+            <Route element={<TasksProvider>{<Outlet />}</TasksProvider>}>
+              <Route path='/tasks' element={<TasksPage />} />
+              <Route path='/tasks/new' element={<TasksFormPage />} />
+              <Route path='/tasks/1/edit' element={<TasksFormPage />} />
+            </Route>
+
             <Route path='/profile' element={<ProfilePage />} />
           </Route>
 

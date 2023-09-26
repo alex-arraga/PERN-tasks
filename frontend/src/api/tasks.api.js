@@ -35,3 +35,14 @@ export const getAllTasksRequest = async () => {
 
     return response.json()
 }
+
+export const deleteTaskRequest = async (id) => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+            method: 'DELETE',
+            credentials: 'include',
+        })
+    } catch (error) {
+        return console.log(error)
+    }
+}

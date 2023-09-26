@@ -1,15 +1,17 @@
 import { Card, Textarea, Input, Label, Button, ErrorMessage } from '../components/ui/index';
 import { useForm } from 'react-hook-form';
-import { createTaskRequest } from '../api/tasks.api'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useTasks } from '../context/TasksContext'
+
 
 function TasksFormPage() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate()
+    const { createNewTask } = useTasks()
 
     const onSumbit = handleSubmit(async (task) => {
-        const res = await createTaskRequest(task)
+        createNewTask(task)
         navigate('/tasks')
     })
 
