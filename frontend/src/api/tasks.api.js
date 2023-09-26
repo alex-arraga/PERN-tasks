@@ -26,3 +26,12 @@ export const createTaskRequest = (task) => {
         throw new Error(error)
     }
 }
+
+export const getAllTasksRequest = async () => {
+    const response = await fetch('http://localhost:3000/api/tasks', {
+        method: 'GET',
+        credentials: 'include'
+    })
+
+    return response.json()
+}

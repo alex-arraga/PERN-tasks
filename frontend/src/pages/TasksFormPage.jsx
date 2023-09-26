@@ -9,7 +9,7 @@ function TasksFormPage() {
     const navigate = useNavigate()
 
     const onSumbit = handleSubmit(async (task) => {
-        const returnedResponse = await createTaskRequest(task)
+        const res = await createTaskRequest(task)
         navigate('/tasks')
     })
 
@@ -31,17 +31,18 @@ function TasksFormPage() {
                             })}
                         />
                         {errors.title && <ErrorMessage>Titulo requerido</ErrorMessage>}
-
-
                     </div>
 
                     <div className='my-5'>
                         <Label htmlFor='description'>Descripción</Label>
                         <Textarea placeholder='This is a description' rows={4}
                             {
-                            ...register('description')
+                            ...register('description', {
+                                required: true
+                            })
                             }
                         ></Textarea>
+                        {errors.description && <ErrorMessage>Descripción requerida</ErrorMessage>}
                     </div>
 
                     <div className='flex justify-center'>
