@@ -4,4 +4,5 @@ export { Button } from './Button';
 export { Label } from './Label';
 export { Container } from './Container';
 export { Textarea } from './Textarea';
-export { ErrorMessage } from './ErrorMessage'
+export { ErrorMessage } from './ErrorMessage';
+export { Loading } from './Loading'

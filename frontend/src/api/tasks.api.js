@@ -36,6 +36,15 @@ export const getAllTasksRequest = async () => {
     return response.json()
 }
 
+export const getTaskRequest = async (id) => {
+    const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+        method: 'GET',
+        credentials: 'include'
+    })
+
+    return response.json()
+}
+
 export const deleteTaskRequest = async (id) => {
     try {
         const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {

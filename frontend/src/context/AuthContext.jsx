@@ -17,6 +17,7 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null)
     const [isAuth, setIsAuth] = useState(false)
     const [frontendErrors, setFrontedErrors] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     // Register user
     const signUp = async (data) => {
@@ -115,9 +116,11 @@ export function AuthProvider({ children }) {
                 .then(data => {
                     setUser(data)
                     setIsAuth(true)
+                    setLoading(false)
                 })
                 .catch(err => {
                     console.log(err)
+                    setLoading(false)
                 })
         }
     }, [])
@@ -127,6 +130,7 @@ export function AuthProvider({ children }) {
         user,
         isAuth,
         frontendErrors,
+        loading,
         signUp,
         signIn,
         signOut

@@ -9,8 +9,8 @@ import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
-import NavBar from './components/navbar/NavBar';
-import Container from './components/ui/Container';
+import { Loading, Container } from './components/ui/index';
+import { NavBar } from './components/navbar/Navbar'
 import { ProtectedRoutes } from './components/protected_routes/ProtectedRoutes';
 
 import { useAuth } from './context/authContext';
@@ -18,7 +18,11 @@ import { TasksProvider } from './context/TasksContext';
 
 function App() {
 
-  const { isAuth } = useAuth();
+  const { isAuth, loading } = useAuth();
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <>
@@ -38,7 +42,7 @@ function App() {
             <Route element={<TasksProvider>{<Outlet />}</TasksProvider>}>
               <Route path='/tasks' element={<TasksPage />} />
               <Route path='/tasks/new' element={<TasksFormPage />} />
-              <Route path='/tasks/1/edit' element={<TasksFormPage />} />
+              <Route path='/tasks/:id/edit' element={<TasksFormPage />} />
             </Route>
 
             <Route path='/profile' element={<ProfilePage />} />
