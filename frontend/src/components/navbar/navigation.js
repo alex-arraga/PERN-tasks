@@ -8,10 +8,6 @@ export const privateRoutes = [
         path: '/tasks/new'
     },
     {
-        name: 'Editar tarea',
-        path: '/tasks/1/edit'
-    },
-    {
         name: 'Perfil',
         path: '/profile'
     }

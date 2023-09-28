@@ -9,13 +9,22 @@ function TasksFormPage() {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const navigate = useNavigate()
-    const { createNewTask, loadTask } = useTasks()
+    const { createNewTask, loadTask, updateTask } = useTasks()
     const params = useParams()
 
-    // Send data of a new task
-    const onSumbit = handleSubmit(async (task) => {
-        createNewTask(task)
-        navigate('/tasks')
+    // Send data to create a new task or upgrade a task
+    const onSumbit = handleSubmit(async (data) => {
+        let task;
+
+        if (!params.id) {
+            task = createNewTask(data)
+        } else {
+            task = updateTask(params.id, data)
+        }
+
+        if (task) {
+            navigate('/tasks')
+        }
     })
 
     // Get data of a task and edit them
@@ -31,13 +40,11 @@ function TasksFormPage() {
 
     return (
         <div className='w-[calc(100vw-30rem)] h-max m-auto mt-5'>
-
             <Card>
                 <h2 className='text-3xl mb-5'>
-                    {params.id ? 'Edit task' : 'Create new Task'}
+                    {params.id ? 'Editar tarea' : 'Crear nueva tarea'}
                 </h2>
 
-                {/* Formulario */}
                 <form onSubmit={onSumbit}>
 
                     <div className='my-5'>
@@ -57,15 +64,17 @@ function TasksFormPage() {
                             {
                             ...register('description', {
                                 required: true
-                            })
-                            }
+                            })}
                         ></Textarea>
                         {errors.description && <ErrorMessage>Descripción requerida</ErrorMessage>}
                     </div>
 
-                    <div className='flex justify-center'>
+                    <div className='flex justify-center gap-3'>
+                        <Button style={'cancel'}>
+                            Cancelar
+                        </Button>
                         <Button>
-                            {params.id ? 'Edit task' : 'Create new Task'}
+                            {params.id ? 'Editar tarea' : 'Crear tarea'}
                         </Button>
                     </div>
                 </form>

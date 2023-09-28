@@ -9,9 +9,10 @@ function TasksPage() {
         loadTasks()
     }, [])
 
+    // Mapping 'task': Array, and order from highest to lowest
     return (
-        <div className='grid grid-cols-3 gap-5'>
-            {tasks.map(tasks =>
+        <div className={'grid grid-cols-3 gap-5'}>
+            {tasks.sort(((a, b) => b.id - a.id)).map(tasks =>
                 <TasksCard task={tasks} key={tasks.id} />
             )}
         </div>

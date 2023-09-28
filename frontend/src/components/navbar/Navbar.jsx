@@ -7,7 +7,7 @@ export function NavBar() {
     const location = useLocation()
 
     return (
-        <nav className="bg-zinc-900 flex items-center justify-between py-4 px-10">
+        <nav className="bg-gray-900 flex items-center justify-between py-4 px-10 mb-5">
             <Link to={'/'}>
                 <h1 className="text-lg font-medium">
                     PERN Tasks
