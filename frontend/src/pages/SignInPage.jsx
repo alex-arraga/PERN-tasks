@@ -18,7 +18,7 @@ function LoginPage() {
 
     return (
         <div className='h-[calc(100vh-7rem)] flex justify-center items-center'>
-            <Card>
+            <Card className={''}>
 
                 <div className='flex justify-center'>
                     <h1 className='text-4xl font-bold my-4 text-center'> Sign in</h1>
@@ -42,13 +42,14 @@ function LoginPage() {
                     {errors.password && <ErrorMessage>Por favor ingrese su contraseña</ErrorMessage>}
 
 
-                    {/* Button */}
-                    <Button>
-                        Ingresar
-                    </Button>
+                    <div className='flex justify-center'>
+                        <Button className='w-[calc(100%)] flex justify-center'>
+                            Ingresar
+                        </Button>
+                    </div>
                 </form>
 
-                <div className='mt-10 flex gap-1'>
+                <div className='mt-10 flex justify-center gap-1'>
                     <p className='text-sm text-gray-300'>No estas registrado aún?</p> <Link className='text-sm font-medium text-gray-100' to='/signup'>Registrate</Link>
                 </div>
 

@@ -17,7 +17,7 @@ function RegisterPage() {
     });
 
     return (
-        <div className="h-[calc(100vh-7rem)] flex items-center justify-center">
+        <div className="flex items-center justify-center h-[calc(100vh-10rem)]">
             <Card>
                 <div className="flex justify-center">
                     <h3 className="text-4xl font-bold mb-5">Sign up</h3>
@@ -25,19 +25,26 @@ function RegisterPage() {
 
                 {/* Send Form */}
                 <form onSubmit={onSumbit}>
-                    <Label htmlFor='name'>
-                        Nombre
-                    </Label>
-                    <Input type='text' placeholder='Nombre'
-                        {...register('name', { required: true })} />
-                    {errors.name && <ErrorMessage>Por favor ingrese su nombre</ErrorMessage>}
 
-                    <Label htmlFor='lastname'>
-                        Apellido
-                    </Label>
-                    <Input type='text' placeholder='Apellido'
-                        {...register('lastname', { required: true })} />
-                    {errors.lastname && <ErrorMessage>Por favor ingrese su apellido</ErrorMessage>}
+                    <div className='flex gap-3'>
+                        <div className='flex flex-col w-full'>
+                            <Label htmlFor='name'>
+                                Nombre
+                            </Label>
+                            <Input type='text' placeholder='Nombre'
+                                {...register('name', { required: true })} />
+                            {errors.name && <ErrorMessage>Por favor ingrese su nombre</ErrorMessage>}
+                        </div>
+
+                        <div className='flex flex-col w-full'>
+                            <Label htmlFor='lastname'>
+                                Apellido
+                            </Label>
+                            <Input type='text' placeholder='Apellido'
+                                {...register('lastname', { required: true })} />
+                            {errors.lastname && <ErrorMessage>Por favor ingrese su apellido</ErrorMessage>}
+                        </div>
+                    </div>
 
                     <Label htmlFor='email'>
                         Email
@@ -53,12 +60,14 @@ function RegisterPage() {
                         {...register('password', { required: true })} />
                     {errors.password && <ErrorMessage>Por favor ingrese contraseña</ErrorMessage>}
 
-                    <Button>
-                        Registrarse
-                    </Button>
+                    <div className='flex justify-center'>
+                        <Button className='w-[calc(100%)] flex justify-center'>
+                            Registrarse
+                        </Button>
+                    </div>
                 </form>
 
-                <div className='mt-10 flex gap-1'>
+                <div className='mt-10 flex justify-center gap-1'>
                     <p className='text-sm text-gray-300'>Ya estas registrado?</p> <Link className='text-sm font-medium text-gray-100' to='/signin'>Ingresá</Link>
                 </div>
 

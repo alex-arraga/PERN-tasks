@@ -19,9 +19,11 @@ export function AuthProvider({ children }) {
     const [frontendErrors, setFrontedErrors] = useState(null)
     const [loading, setLoading] = useState(true)
 
+    const baseURL = 'http://localhost:3000/api';
+
     // Register user
     const signUp = async (data) => {
-        const response = await fetch('http://localhost:3000/api/signup', {
+        const response = await fetch(`${baseURL}/signup`, {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(data),
@@ -30,12 +32,11 @@ export function AuthProvider({ children }) {
             }
         })
 
-        // The server returns a json object even if the response is an error, and 'response' interprets and stores it
+        // The server returns a json even if the response is an error, and 'response' interprets and stores it
         const dataSignUp = await response.json();
 
         if (response.ok) {
             setUser(dataSignUp)
-            setIsAuth(true)
             return dataSignUp
         } else {
 
@@ -57,7 +58,7 @@ export function AuthProvider({ children }) {
     // login user
     const signIn = async (data) => {
         try {
-            const response = await fetch('http://localhost:3000/api/signin', {
+            const response = await fetch(`${baseURL}/signin`, {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify(data),
@@ -91,8 +92,9 @@ export function AuthProvider({ children }) {
         }
     };
 
+    // Signout user
     const signOut = async () => {
-        const response = await fetch('http://localhost:3000/api/signout', {
+        const response = await fetch(`${baseURL}/signout`, {
             method: 'POST',
             credentials: 'include'
         })
@@ -103,7 +105,7 @@ export function AuthProvider({ children }) {
     // Refresh page
     useEffect(() => {
         if (Cookie.get('token')) {
-            fetch('http://localhost:3000/api/profile', {
+            fetch(`${baseURL}/profile`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -111,19 +113,32 @@ export function AuthProvider({ children }) {
                     if (!response.ok) {
                         throw new Error('Error server response')
                     }
-                    return response.json()
+                    return response.json();
                 })
                 .then(data => {
-                    setUser(data)
-                    setIsAuth(true)
-                    setLoading(false)
+                    setUser(data);
+                    setIsAuth(true);
+                    setLoading(false);
                 })
                 .catch(err => {
+                    setUser(null)
+                    setIsAuth(false)
+                    setLoading(false);
                     console.log(err)
-                    setLoading(false)
                 })
+        } else {
+            setLoading(false)
         }
-    }, [])
+    }, []);
+
+    // Clean errors
+    useEffect(() => {
+        const clean = setTimeout(() => {
+            setFrontedErrors(null)
+        }, 5000)
+
+        return () => clearTimeout(clean);
+    }, [frontendErrors])
 
     // Provider
     return <createAuthContext.Provider value={{

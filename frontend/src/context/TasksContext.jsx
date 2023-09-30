@@ -23,6 +23,7 @@ export const useTasks = () => {
 export const TasksProvider = ({ children }) => {
     const [tasks, setTasks] = useState([])
 
+    // CRUD
     const loadTasks = async () => {
         const response = await getAllTasksRequest()
             .then(response => {

@@ -20,14 +20,12 @@ function App() {
 
   const { isAuth, loading } = useAuth();
 
-  if (loading) {
-    return <Loading />
-  }
+  if (loading) return <Loading />
 
   return (
     <>
       <NavBar />
-      <Container className='h-[calc(100vh-10rem)]'>
+      <Container>
         <Routes>
 
           <Route element={<ProtectedRoutes isAllowed={!isAuth} redirectTo={'/tasks'} />}>

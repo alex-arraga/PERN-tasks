@@ -3,9 +3,12 @@ import { useAuth } from '../context/authContext';
 function ProfilePage() {
     const { user } = useAuth()
     return (
-        <div>
-            {JSON.stringify(user, null, 2)}
+        <div className='m-10'>
+            <pre>
+                {JSON.stringify(user, null, 2)}
+            </pre>
         </div>
+
     )
 }
 

@@ -10,7 +10,7 @@ export function TasksCard({ task }) {
     const navigate = useNavigate()
 
     return (
-        <Card className='grid gap-3 bg-zinc-900 border-slate-600 border-2 py-5 px-5' key={task.id}>
+        <Card className='grid gap-3 bg-zinc-900 border-slate-600 border-2 py-5 px-5 sm:w-full md:w-full lg:w-full xl:w-full' key={task.id}>
             <div className='flex justify-between items-start'>
                 <h1 className='text-2xl text-gray-200 font-semibold text-justify'>{task.title} </h1>
                 <div className='flex gap-1.5 pl-10 py-2'>

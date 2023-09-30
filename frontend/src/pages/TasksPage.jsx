@@ -9,9 +9,17 @@ function TasksPage() {
         loadTasks()
     }, [])
 
+    if (tasks.length === 0) return (
+        <div className='flex justify-center items-center w-full h-full'>
+            <h1 className='text-2xl font-medium opacity-20 select-none'>No hay tareas pendientes</h1>
+        </div>
+    )
+
     // Mapping 'task': Array, and order from highest to lowest
     return (
-        <div className={'grid grid-cols-3 gap-5'}>
+        <div className={
+            `grid gap-3 mx-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-5`}>
+
             {tasks.sort(((a, b) => b.id - a.id)).map(tasks =>
                 <TasksCard task={tasks} key={tasks.id} />
             )}

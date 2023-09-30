@@ -39,8 +39,14 @@ function TasksFormPage() {
     }, [])
 
     return (
-        <div className='w-[calc(100vw-30rem)] h-max m-auto mt-5'>
-            <Card>
+        <div className='flex justify-center w-full h-[calc(100vh-10rem)] items-center'>
+            <Card className={
+                `border-slate-700 border-2
+                sm:w-[calc(100vw-5vw)] 
+                md:w-[calc(100vw-10vw)] 
+                lg:w-[calc(100vw-15vw)]
+                xl:w-[calc(100vw-20vw)]`
+            }>
                 <h2 className='text-3xl mb-5'>
                     {params.id ? 'Editar tarea' : 'Crear nueva tarea'}
                 </h2>
