@@ -10,7 +10,7 @@ function TasksPage() {
     }, [])
 
     if (tasks.length === 0) return (
-        <div className='flex justify-center items-center w-full h-full'>
+        <div className='flex justify-center items-center w-full h-[calc(100vh-8rem)] bg-pink-700'>
             <h1 className='text-2xl font-medium opacity-20 select-none'>No hay tareas pendientes</h1>
         </div>
     )

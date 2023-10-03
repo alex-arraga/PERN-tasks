@@ -42,10 +42,11 @@ function TasksFormPage() {
         <div className='flex justify-center w-full h-[calc(100vh-10rem)] items-center'>
             <Card className={
                 `border-slate-700 border-2
-                sm:w-[calc(100vw-5vw)] 
-                md:w-[calc(100vw-10vw)] 
-                lg:w-[calc(100vw-15vw)]
-                xl:w-[calc(100vw-20vw)]`
+                xs:w-[calc(100vw)]
+                sm:w-[calc(100vw-18vw)] 
+                md:w-[calc(100vw-18vw)] 
+                lg:w-[calc(100vw-18vw)]
+                xl:w-[calc(100vw-18vw)]`
             }>
                 <h2 className='text-3xl mb-5'>
                     {params.id ? 'Editar tarea' : 'Crear nueva tarea'}
@@ -76,11 +77,11 @@ function TasksFormPage() {
                     </div>
 
                     <div className='flex justify-center gap-3'>
-                        <Button style={'cancel'}>
+                        <Button style={'cancel'} >
                             Cancelar
                         </Button>
                         <Button>
-                            {params.id ? 'Editar tarea' : 'Crear tarea'}
+                            {params.id ? 'Editar tarea' : 'Crear'}
                         </Button>
                     </div>
                 </form>
